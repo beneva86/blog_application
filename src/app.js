@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const session = require('express-session')
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
+// BCRYPT
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
@@ -65,7 +66,6 @@ const Comment = sequelize.define('comments', {
 	}
 })
 
-
 // TABLES RELATIONSHIP/ASSOCIATION 
 User.hasMany(Message)
 Message.belongsTo(User)	// userId in messages table
@@ -77,7 +77,6 @@ Message.hasMany(Comment)
 //----------------ROUTES----------------
 
 //---------------ROUTE: HOME-----------------
-
 app.get('/', function(req, res){
 	let user = req.session.user
 	let message = req.query.message
@@ -90,7 +89,6 @@ app.post('/login', function (request, response) {
 	let password = request.body.password
 	console.log('username' + " " + username)
 	console.log('password' + " " + password)
-// console.log(`Just to make sure I get: ${username} + " " + ${password}`);
 
 	// data validation 
 	if(request.body.username.length === 0) {
@@ -121,7 +119,7 @@ app.post('/login', function (request, response) {
 	// if there is no user with the username
 	} else {
 		response.send({falseUsername: true})		
-	}		// `/?message='user not found'`
+	}
 })
 	.catch(function(err) {
     	console.log(err);
