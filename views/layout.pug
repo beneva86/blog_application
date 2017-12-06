@@ -1,0 +1,43 @@
+doctype html
+html(lang='en')
+	head
+		link(rel='stylesheet', href='/css/bootstrap.css')
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+		script(src='/js/bootstrap.min.js')
+		script(src='/js/showcomments.js')
+	body
+		//- Navigation
+		.navbar.navbar-default.navbar-fixed-top
+			.container-fluid
+				.navbar-header
+					button.navbar-toggle(type='button', data-target='.navbar-collapse', data-toggle='collapse')
+						span.sr-only Toggle navigation
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+					a.navbar-brand(href='/') Traveller's blog
+				.navbar-collapse.collapse
+					ul.nav.navbar-nav.navbar-right
+						li
+							a(href='/') Home
+						li.dropdown
+							a.dropdown-toggle(href='/destinations' data-toggle='dropdown')
+								| Destinations
+								b.caret
+							ul.dropdown-menu
+								li.dropdown-header Europe
+								li
+									a(href='/hungary') Hungary
+								li.dropdown-header Asia
+								li
+									a(href='/thailand') Thailand
+						if user
+							li
+								a(href='/profile') Your profile
+							li
+								a(href='/logout') Log out
+						else
+							li
+								a(href='/loginSignup') Log in / Sign up
+block content

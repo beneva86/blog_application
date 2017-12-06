@@ -1,0 +1,54 @@
+extends layout
+
+block content
+		br
+		br
+		br
+		br
+		#signup.container-fluid
+			.panel.panel-default.signup.col-xs-5.col-sm-5.col-md-5.col-lg-5.col-xl-5
+				.panel-body#forms
+					h3.signuptitle log in
+					form.signupform(action='/login', method='POST', autocomplete='off')
+						label(for='username') Your username
+						br
+						input#usernameLogin(type='text', name='username_login', placeholder='name', required)
+						br
+						br
+						label(for='password') Your password
+						br
+						input#passwordLogin(type='password', name='password_login', placeholder='password' required)
+						br
+						br
+						button#login-button.dashed.thin(type="button", name="login") LOGIN
+						br
+						br
+			.panel.panel-default.signup.col-xs-5.col-sm-5.col-md-5.col-lg-5.col-xl-5.col-xs-offset-2.col-sm-offset-2.col-md-offset-2.col-lg-offset-2.col-lg-offset-2
+				.panel-body#forms
+					h3.signuptitle sign up
+					form.signupform(action='/signup', method='POST', autocomplete='off')
+						label(for='username') Choose a username
+						br
+						input#username(type='text', name='username', placeholder='username' required)
+						br
+						br
+						label#email-mark(for='email') Your email 
+						br
+						input#email(type='email', name='email', placeholder='email', required)
+						h5#email-feedback
+						br
+						label(for='password') Choose a password
+						br
+						input#password(type='password', name='password', placeholder='password', pattern='.{8,}', required)
+						h5#password-character
+						br
+						label#password-mark(for='password_confirmed') Confirm your password
+						br
+						input#password-confirmed(type='password', name='password-confirmed', placeholder='password again', required)
+						h5#password-notmatch
+						br
+						br
+						button#signup-button.dashed.thin(type="button", name="submit") CREATE NEW ACCOUNT
+
+		script(src='https://unpkg.com/sweetalert/dist/sweetalert.min.js')
+		script(src='/js/signuperrors.js')

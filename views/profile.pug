@@ -1,0 +1,31 @@
+extends layout
+
+block content
+		br
+		br
+		if user
+			h2(data-userList= userList).text-center Hi #{user.username}
+			.container
+				h3 Your posts:
+				each message in messages
+					.container#newMessage(data-message=message)
+						.row
+							.panel.panel-default
+								.panel-heading Topic: #{message.topic}
+									span(style='float:right;')= message.updatedAt.toString().substring(0,21)
+								.panel-body= message.body
+							if message.comments
+							button.pull-right.see-comments(data-messageid=message.id) See comments
+					each comment in message.comments
+						.container.hidden(data-box=comment.messageId, id=message.id+1)
+							.row
+								.panel.panel-default.commentpanel
+									each user in userList
+										if user.id === comment.userId
+											.panel-heading= user.username
+												span(style='float:right')=comment.createdAt.toString().substring(0,21)
+											.panel-body=comment.body
+		else
+			h4.text-center To see your profile, 
+				a(href='/loginSignup') please log in here.
+		script(src='/js/showcomments.js')

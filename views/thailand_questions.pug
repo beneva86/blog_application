@@ -1,0 +1,66 @@
+extends layout
+
+block content
+		.container
+			.row.text-center.title
+				h2#topic(data-userList= userList) Questions about Thailand
+			//- if the user is logged in, show the textare to write message
+		if user
+			.container
+				textarea(rows='7', cols='60', id="questionThailand" name='message', placeholder='Your message...')
+				br
+				button(onclick='sendMessage()') Send message
+			br
+			.container#newMessage
+				.row
+					.panel.panel-default
+						.panel-heading #{user.username}
+							span#time(style='float:right') 
+						.panel-body#newMessageContent
+			//- if the user is not logged in, show this element
+		else
+			h4.text-center If you would like to send a message, 
+				a(href='/loginSignup') please log in here. 
+
+		.container
+			.row
+				//- show all messages
+				h3(data-user= user) Messages:
+				each message in messages
+					.panel.panel-default
+						.panel-heading #{message.id} #{message.user.dataValues.username}
+							span(style='float:right')= message.createdAt.toString().substring(0,21)
+						.panel-body #{message.body}
+					if user	
+						button.replyButton(style='float:right;' type='button' data-box = message.id) Reply
+						br
+						//- container to write comment
+					.container.replyCont(id = message.id)
+						div#replyWrapper
+							.panel.panel-default
+								.panel-heading#replyHeading Your message
+									button.close(type='button', aria-label='Close' onclick='closeTheComment()' style='text-align:right')
+										span.closeButton(aria-hidden='true') X
+								textarea(rows='5' style='width:100%' id="commentThailand" name='comment', placeholder='Your message...')
+								button.sendComment(style='float:right;' type='button', data-box=message.id) Send comment
+								br
+							//- render the comments to the messages
+										each comment in message.comments
+					each comment in message.comments
+						if comment.id !== undefined
+							h5(style='padding-left:30%') Comment #{comment.id}
+							.container
+								.row
+									.panel.panel-default.commentpanel
+										each user in userList
+											if user.id === comment.userId
+												.panel-heading(id=users)=user.username
+													span(style='float:right')=comment.createdAt.toString().substring(0,21)
+												.panel-body=comment.body
+
+							//- container for the comment which sent (refreshing the page is not needed)
+					.container.comment(id=message.id+'comment')
+						.row
+							.panel.panel-default.commentpanel
+
+		script(src="/js/messages_thailandquestions.js")

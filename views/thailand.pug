@@ -1,0 +1,45 @@
+extends layout
+
+block content
+		.container
+			#myCarousel.carousel.slide(data-ride='carousel')
+				//- Indicators
+				ol.carousel-indicators
+					li.active(data-target='#myCarousel', data-slide-to='0')
+					li(data-target='#myCarousel', data-slide-to='1')
+					li(data-target='#myCarousel', data-slide-to='2')
+				//- Wrapper for slides
+				.carousel-inner
+					.item.active
+						img(src='/images/thailand01.jpg', alt='Los Angeles', style='width:100%;')
+						.carousel-caption
+							h4 Bamboo Island
+					.item
+						img(src='/images/thailand04.jpg', alt='Chicago', style='width:100%;')
+						.carousel-caption
+							h4 James Bond Island
+					.item
+						img(src='/images/thailand05.jpg', alt='New York', style='width:100%;')
+						.carousel-caption
+							h4 Viking's Cave
+				//- Left and right controls
+				a.left.carousel-control(href='#myCarousel', data-slide='prev')
+					span.glyphicon.glyphicon-chevron-left
+					span.sr-only Previous
+				a.right.carousel-control(href='#myCarousel', data-slide='next')
+					span.glyphicon.glyphicon-chevron-right
+					span.sr-only Next
+		br
+		.container
+			.row
+				h2 What do you think about Thailand?
+				a(href='/thailand_forum')
+					button Go to the Forum
+		br
+		.container
+			.row
+				h2 Questions about Thailand
+				a(href='/thailand_questions')
+					button Go to the Questions
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+		script(src='/js/bootstrap.min.js')

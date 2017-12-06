@@ -1,0 +1,68 @@
+doctype html
+html(lang='en')
+	head
+		link(rel='stylesheet', href='/css/bootstrap.css')
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+	body
+		//- Navigation
+		.navbar.navbar-default.navbar-fixed-top
+			.container-fluid
+				.navbar-header
+					button.navbar-toggle(type='button', data-target='.navbar-collapse', data-toggle='collapse')
+						span.sr-only Toggle navigation
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+					a.navbar-brand(href='/') Traveller's blog
+				.navbar-collapse.collapse
+					ul.nav.navbar-nav.navbar-right
+						li
+							a(href='/') Home
+						li.dropdown
+							a.dropdown-toggle(href='/destinations' data-toggle='dropdown')
+								| Destinations
+								b.caret
+							ul.dropdown-menu
+								li.dropdown-header Europe
+								li
+									a(href='/hungary') Hungary
+								li.dropdown-header Asia
+								li
+									a(href='/thailand') Thailand
+						if user
+							li
+								a(href='/profile') Your profile
+							li
+								a(href='/logout') Log out
+						else
+							li
+								a(href='/loginSignup') Log in / Sign up	
+		.container-fluid
+			.row
+				header.masthead.text-white.text-center
+					.overlay
+					.container
+						.row
+							.col-xl-9
+								blockquote.blockquote
+									p Twenty years from now you will be more disappointed by the things that you didn't do.
+									footer Mark Twain
+		h2.text-center=message
+		br
+		.container-fluid
+			.row
+				.col-xs-5.col-sm-5.col-md-5.col-lg-5.col-xl-5.text-center.align-middle
+					p.destinations I love about Thailand that is offers such a great mix of adventure, culture and beaches. It really is a shame that Thailand is considered too touristy as there are tons of gorgeous places to visit far away from crowds. Infrastructure is great, so it is easy to get around. No need to mention about the food…
+					button.button.button-glow.button-rounded.button-raised.button-primary(type='button') Read more...
+				.col-xs-6.col-sm-6.col-md-6.col-lg-6.col-xl-6.col-xs-offset-1.col-sm-offset-1.col-md-offset-1.col-lg-offset-1.col-xl-offset-1
+					img.img-rounded.img-responsive(src='/images/thailand_sajat_small.jpg', alt='card_thailand', id="img_right")
+		.container-fluid
+			.row
+				.col-xs-6.col-sm-6.col-md-6.col-lg-6.col-xl-6
+					img.img-rounded.img-responsive(src='/images/hungary_small.jpg', alt='card_thailand')
+				.col-xs-6.col-sm-6.col-md-6.col-lg-6.col-xl-6.text-center.align-middle
+					p.destinations Once a mecca for backpackers and budget travelers, the shinning gem on Hungary’s Danube River, is enjoying an explosion of the luxury market and a well-deserved reputation as one of the most beautiful cities and the second fastest-developing urban economy in Europe.
+					button.button.button-glow.button-rounded.button-raised.button-primary(type='button') Read more...
+
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+		script(src='/js/bootstrap.min.js')
